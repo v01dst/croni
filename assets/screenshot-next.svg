@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="951" height="266" viewBox="0 0 951 266" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,'DejaVu Sans Mono',monospace">
+<defs><filter id="sh" x="-15%" y="-15%" width="130%" height="135%"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.5"/></filter><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a2030"/><stop offset="1" stop-color="#0d1117"/></linearGradient><linearGradient id="tb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a3140"/><stop offset="1" stop-color="#20262f"/></linearGradient></defs>
+<rect x="18" y="16" width="915" height="234" rx="13" fill="url(#bg)" filter="url(#sh)" stroke="#30363d"/>
+<path d="M 18 29 a 13 13 0 0 1 13 -13 h 889 a 13 13 0 0 1 13 13 v 17 h -915 z" fill="url(#tb)"/>
+<circle cx="44" cy="39" r="6.5" fill="#ff5f57"/>
+<circle cx="68" cy="39" r="6.5" fill="#febc2e"/>
+<circle cx="92" cy="39" r="6.5" fill="#28c840"/>
+<text x="475" y="44" text-anchor="middle" font-size="14" fill="#9aa4b2">croni next</text>
+<line x1="18" y1="64" x2="933" y2="64" stroke="#1c2128" stroke-width="1"/>
+<text x="26.0" y="86.0" xml:space="preserve">
+<tspan style="color:#e6edf3;" font-weight="700" >schedule</tspan><tspan style="color:#c9d1d9;" > 0 4 * * * </tspan><tspan style="color:#c9d1d9;" >·</tspan><tspan style="color:#c9d1d9;" > at minute 0, at hour 04:00, every day of the month, every month, every day of the week</tspan></text>
+<text x="26.0" y="107.0" xml:space="preserve">
+<tspan style="color:#e6edf3;" font-weight="700" >from</tspan><tspan style="color:#c9d1d9;" > Sun 2026-08-30 07:32</tspan></text>
+<text x="26.0" y="149.0" xml:space="preserve">
+<tspan style="color:#c9d1d9;" >  </tspan><tspan style="color:rgb(0,0,204);" >2026-08-31 04:00</tspan><tspan style="color:#c9d1d9;" >  </tspan><tspan style="color:#c9d1d9;" >in 20h 27m</tspan></text>
+<text x="26.0" y="170.0" xml:space="preserve">
+<tspan style="color:#c9d1d9;" >  </tspan><tspan style="color:rgb(0,0,204);" >2026-09-01 04:00</tspan><tspan style="color:#c9d1d9;" >  </tspan><tspan style="color:#c9d1d9;" >in 1d 20h</tspan></text>
+<text x="26.0" y="191.0" xml:space="preserve">
+<tspan style="color:#c9d1d9;" >  </tspan><tspan style="color:rgb(0,0,204);" >2026-09-02 04:00</tspan><tspan style="color:#c9d1d9;" >  </tspan><tspan style="color:#c9d1d9;" >in 2d 20h</tspan></text>
+<text x="26.0" y="212.0" xml:space="preserve">
+<tspan style="color:#c9d1d9;" >  </tspan><tspan style="color:rgb(0,0,204);" >2026-09-03 04:00</tspan><tspan style="color:#c9d1d9;" >  </tspan><tspan style="color:#c9d1d9;" >in 3d 20h</tspan></text>
+</svg>
