@@ -230,6 +230,65 @@ func cmdValidate(path string, asJSON bool) int {
 	return status
 }
 
+func cmdLint(path string, asJSON bool) int {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, paint("error:", cBad), err)
+		return 1
+	}
+	type lintIssue struct {
+		Line    int    `json:"line"`
+		Rule    string `json:"rule"`
+		Message string `json:"message"`
+	}
+	var issues []lintIssue
+	status := 0
+	for i, raw := range strings.Split(string(data), "\n") {
+		line := strings.TrimSpace(raw)
+		if line == "" || strings.HasPrefix(line, "#") {
+			continue
+		}
+		parts := strings.SplitN(line, " ", 6)
+		if len(parts) < 6 {
+			continue
+		}
+		expr := strings.Join(parts[:5], " ")
+		e, err := cron.Parse(expr)
+		if err != nil {
+			continue
+		}
+		// check: runs every minute
+		allStars := true
+		for _, f := range e.Fields {
+			if f != "*" {
+				allStars = false
+			}
+		}
+		if allStars {
+			issues = append(issues, lintIssue{i + 1, "every-minute", "expression runs every minute; may be too frequent"})
+			status = 1
+		}
+		// check: missing @reboot for startup
+		if strings.Contains(line, "@reboot") == false && e.Reboot {
+			// not applicable
+		}
+	}
+	if asJSON {
+		b, _ := json.MarshalIndent(issues, "", "  ")
+		fmt.Println(string(b))
+		return status
+	}
+	if len(issues) == 0 {
+		fmt.Println(paint("ok", cGood), "no lint issues found")
+		return 0
+	}
+	for _, iss := range issues {
+		fmt.Printf("  %s %s  %s\n", paint(fmt.Sprintf("L%03d", iss.Line), cDim), paint(iss.Rule, cBad), iss.Message)
+	}
+	fmt.Printf("\n%s\n", paint(fmt.Sprintf("%d issue(s) found", len(issues)), cBold))
+	return status
+}
+
 func main() {
 	os.Exit(run(os.Args[1:]))
 }
@@ -312,6 +371,11 @@ func run(argv []string) int {
 			return failUsage("validate needs a crontab file")
 		}
 		return cmdValidate(rest[0], asJSON)
+	case "lint":
+		if len(rest) == 0 {
+			return failUsage("lint needs a crontab file")
+		}
+		return cmdLint(rest[0], asJSON)
 	default:
 		// bare expression → explain (syntactic sugar)
 		return cmdExplain(args, asJSON)
